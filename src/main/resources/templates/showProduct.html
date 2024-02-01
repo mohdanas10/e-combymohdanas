@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+
+<div class = "container">
+    <h1 class ="text-center my-4 ">products</h1>
+    <a class=" btn btn-primary" href="/home/create">Create Product</a>
+
+<!--        <input id = "dataInput" placeholder="enter product name "/>-->
+<!--        <a href="/home/searchProduct" class="btn btn-primary" type="submit">Search</a>-->
+    <a class=" btn btn-primary" href="/home/showCart">Cart</a>
+        <input  type="text" id = "inputData" class=" text-black" placeholder="Enter Product Name">
+        <button  onclick="sendAjaxRequest()" class="btn btn-primary">Search</button>
+
+    <!--    <div>-->
+    <!--    <tr th:each = "prodect : ${products}">-->
+    <!--        <h2 th:text = "${products.name}"></h2>-->
+    <!--        <h2 th:text = "${products.id}"></h2>-->
+    <!--    </tr>-->
+
+    <!--    </div>-->
+
+    <table class = "table">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each ="obj : ${objs}" >
+            <td th:text = "${obj.productId}"></td>
+            <td th:text = "${obj.name}"></td>
+            <td th:text = "${obj.type}"></td>
+            <td th:text = "${obj.price}"></td>
+            <!--            <td th:text = "${product.createdAt.toString().subString(0, 10)}"></td>-->
+            <td style="white-space:nowrap">
+                <a class="btn btn-primary btn-sm"
+                   th:href="@{/home/update/{id}(id=${obj.productId})}">Edit</a>
+                <a class="btn btn-danger btn-sm"
+                   th:href="@{/home/delete/{id}(id=${obj.productId})}">delete</a>
+                <a onclick="goto()" class="btn btn-success btn-sm"
+                   th:href="@{/home/cart/{id}(id=${obj.productId})}">Add to Cart</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<!--<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>-->
+<!--<script th:inline="javascript">-->
+<!--    function goto(){-->
+<!--        alert("Product added to Cart");-->
+<!--    }-->
+
+
+<!--    function sendAjaxRequest() {-->
+<!--        var inputData = $('#inputData').val();-->
+<!--        $.get('/home/searchProudct', { inputData: inputData }, function(data) {-->
+<!--            // Handle the response if needed-->
+<!--            console.log('Response from server: ' + data);-->
+<!--        });-->
+<!--    }-->
+<!--</script>-->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
